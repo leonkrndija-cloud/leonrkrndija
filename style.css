@@ -1,34 +1,73 @@
-body {
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
-  padding: 48px;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background: #000;
   color: #fff;
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* Instagram: fisso in alto a destra */
+body { padding: 24px; }
+
+/* Canvas full screen */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Overlay */
+.overlay {
+  position: relative;
+  z-index: 1;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.social {
+  display: flex;
+  gap: 12px;
+}
+
 .ig {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-/* (opzionale) un hover leggero */
 .ig img {
   display: block;
   opacity: 0.9;
+  transition: opacity 0.2s ease;
 }
-.ig:hover img {
-  opacity: 1;
-}
+.ig img:hover { opacity: 1; }
 
 main {
-  /* puoi lasciare flex se ti serve, ma per ora non è necessario */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-/* Bottone Portfolio */
+h1 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* Menu / Bottone */
+.menu-wrap { position: relative; display: inline-block; }
+
 .btn {
-  margin-top: 16px;
+  margin-top: 4px;
   background: transparent;
   color: #fff;
   border: 1px solid #fff;
@@ -36,34 +75,42 @@ main {
   border-radius: 999px;
   cursor: pointer;
   font: inherit;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
+.btn:hover { background: #fff; color: #000; border-color: #fff; }
 
-/* Menu sotto al bottone */
 .menu {
-  margin: 12px 0 0;
-  padding: 0;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 140px;
+  margin: 0;
+  padding: 8px 0;
   list-style: none;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-.menu li {
-  margin: 8px 0;
-}
+.menu li { margin: 0; }
 
 .menu-link {
+  display: block;
+  padding: 10px 14px;
   color: #fff;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.15s ease, color 0.15s ease;
 }
+.menu li:last-child .menu-link { border-bottom: none; }
+.menu-link:hover { background: #fff; color: #000; }
 
-.menu-link:hover {
-  border-bottom-color: #fff;
-}
+.hidden { display: none; }
 
-/* Classe che nasconde/mostra */
-.hidden {
-  display: none;
+/* Mobile */
+@media (max-width: 600px) {
+  body { padding: 18px; }
+  .social { gap: 10px; }
 }

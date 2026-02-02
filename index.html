@@ -6,32 +6,133 @@
     <title>La mia casa</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  <body>
+    <div id="bg"></div>
 
- 
-   <body>
+    <div class="overlay">
+      <header class="topbar">
+        <div class="social">
+          <a class="ig" href="https://www.instagram.com/leonkrndija" target="_blank" rel="noreferrer">
+            <img src="Instagram.png" alt="Instagram" width="22" />
+          </a>
+          <a class="ig" href="https://x.com/leonkrndija" target="_blank" rel="noreferrer">
+            <img src="X.png" alt="X" width="22" />
+          </a>
+        </div>
+      </header>
 
-    <div>
-        <a class="ig" href="https://www.instagram.com/leonkrndija" target="_blank" rel="noreferrer">
-            <img src="Instagram.png" alt="Instagram" width="20"> 
-        </a>
-        <a class="ig" href="https://x.com/leonkrndija" target="_blank" rel="noreferrer">
-            <img src="X.png" alt="Instagram" width="20" />
-        </a>
+      <main>
+        <h1>Krndija Leon</h1>
+        <div class="menu-wrap">
+          <button id="portfolioBtn" class="btn" type="button">Portfolio ▾</button>
+          <ul id="portfolioMenu" class="menu hidden">
+            <li><a href="#" id="editingLink" class="menu-link">Editing</a></li>
+            <li><a href="#" id="webLink" class="menu-link">Web</a></li>
+          </ul>
+        </div>
+      </main>
     </div>
 
-  <main>
-    <h1>Krndija Leon</h1>
+    <!-- Menu script -->
+    <script>
+      const btn = document.getElementById('portfolioBtn');
+      const menu = document.getElementById('portfolioMenu');
+      const editingLink = document.getElementById('editingLink');
+      const webLink = document.getElementById('webLink');
 
-    <button id="portfolioBtn" class="btn" type="button">Portfolio</button>
+      btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && e.target !== btn) menu.classList.add('hidden');
+      });
 
-    <ul id="portfolioMenu" class="menu hidden">
-      <li><a href="#" class="menu-link">Web Site</a></li>
-      <li><a href="#" class="menu-link">Editing</a></li>
-      <li><a href="#" class="menu-link">Poster</a></li>
-    </ul>
-  </main>
+      editingLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://www.youtube.com/watch?v=yRrgI7fYfYU&list=TLGGFUNRgwnK2zIwMjAyMjAyNg', '_blank');
+        menu.classList.add('hidden');
+      });
 
-  <script src="script.js"></script>
-</body>
-    
+      webLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://beige-finch-772067.hostingersite.com/', '_blank');
+        menu.classList.add('hidden');
+      });
+    </script>
+
+    <!-- Three.js UMD -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script>
+      let scene, camera, renderer, outerSphere, innerSphere;
+      const mouse = new THREE.Vector2();
+      const raycaster = new THREE.Raycaster();
+      let isHovered = false;
+
+      init();
+      animate();
+
+      function init() {
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 1);
+        document.getElementById('bg').appendChild(renderer.domElement);
+
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 5);
+
+        const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+        const dir = new THREE.DirectionalLight(0xffffff, 1);
+        dir.position.set(3, 3, 3);
+        scene.add(ambient, dir);
+
+        const outerGeo = new THREE.SphereGeometry(1, 32, 32);
+        const outerMat = new THREE.MeshStandardMaterial({
+          color: 0xcccccc,
+          metalness: 0.8,
+          roughness: 0.2,
+          wireframe: true,
+          emissive: new THREE.Color(0x333333)
+        });
+        outerSphere = new THREE.Mesh(outerGeo, outerMat);
+        scene.add(outerSphere);
+
+        const innerGeo = new THREE.SphereGeometry(0.8, 16, 16);
+        const innerMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+        innerSphere = new THREE.Mesh(innerGeo, innerMat);
+        scene.add(innerSphere);
+
+        window.addEventListener('resize', onResize);
+        window.addEventListener('mousemove', onMouseMove);
+      }
+
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      function onMouseMove(e) {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const t = performance.now() * 0.001;
+        outerSphere.rotation.y = t * 0.3;
+        outerSphere.rotation.z = Math.sin(t * 0.4) * 0.05;
+        innerSphere.rotation.y = t * 0.2;
+
+        raycaster.setFromCamera(mouse, camera);
+        const hit = raycaster.intersectObject(outerSphere).length > 0;
+        if (hit !== isHovered) {
+          isHovered = hit;
+          outerSphere.material.color.set(isHovered ? 0xffffff : 0xcccccc);
+        }
+
+        renderer.render(scene, camera);
+      }
+    </script>
+  </body>
 </html>
