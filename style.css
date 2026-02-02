@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  padding: 48px;
+  background: #000;
+  color: #fff;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Instagram: fisso in alto a destra */
+.ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* (opzionale) un hover leggero */
+.ig img {
+  display: block;
+  opacity: 0.9;
+}
+.ig:hover img {
+  opacity: 1;
+}
+
+main {
+  /* puoi lasciare flex se ti serve, ma per ora non è necessario */
+}
+
+/* Bottone Portfolio */
+.btn {
+  margin-top: 16px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Menu sotto al bottone */
+.menu {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  margin: 8px 0;
+}
+
+.menu-link {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-link:hover {
+  border-bottom-color: #fff;
+}
+
+/* Classe che nasconde/mostra */
+.hidden {
+  display: none;
+}
