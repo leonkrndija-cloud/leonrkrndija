@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LEON K. | TELETEXT SYSTEM</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +12,8 @@
 <body>
 
     <div class="crt-overlay"></div>
-    
     <div id="signal-noise" class="hidden"></div>
-    
     <div id="tv-off-effect" class="hidden"></div>
-    
     <div id="destruct-overlay" class="hidden">5</div>
 
     <div id="img-modal" class="hidden">
@@ -30,12 +27,8 @@
             </div>
             <div class="modal-footer">
                 <div class="social-actions" id="social-buttons-container">
-                    <button onclick="handleReaction('like')" id="btn-like" class="action-btn">
-                        [ <span class="heart">♥</span> LIKE ]
-                    </button>
-                    <button onclick="handleReaction('dislike')" id="btn-dislike" class="action-btn">
-                        [ DISLIKE ]
-                    </button>
+                    <button onclick="handleReaction('like')" id="btn-like" class="action-btn">[ <span class="heart">♥</span> LIKE ]</button>
+                    <button onclick="handleReaction('dislike')" id="btn-dislike" class="action-btn">[ DISLIKE ]</button>
                 </div>
                 <span class="modal-status">HD QUALITY</span>
             </div>
@@ -43,7 +36,6 @@
     </div>
 
     <div class="teletext-wrapper" id="main-wrapper">
-        
         <header class="top-header">
             <div class="header-left">
                 <span class="bg-blue white-text"> P100 </span>
@@ -55,16 +47,11 @@
         </header>
 
         <main id="screen-content">
-
             <section id="p100" class="page active">
-                <div class="hero-logo">
-<pre class="yellow-text ascii-art">
-█   ███ ███ █  █   █ █
-█   █   █ █ ██ █   ██ 
-█   ██  █ █ █ ██   █ █
-███ ███ ███ █  █   █ █
-</pre>
-                    <div class="bg-red white-text text-center"> HR / CH </div>
+                
+                <div class="hero-logo text-center">
+                    <h1 class="yellow-text pixel-font-title">LEON K</h1>
+                    <div class="bg-red white-text text-center" style="display:inline-block; padding: 2px 10px;"> HR / CH </div>
                 </div>
 
                 <div class="info-box">
@@ -76,93 +63,73 @@
                 </div>
 
                 <div class="news-list">
-                    <div class="news-item" onclick="navigate(200)">
-                        <span class="white-text">CHI SONO / BIO</span>
-                        <span class="green-text right">200</span>
-                    </div>
-                    <div class="news-item" onclick="navigate(300)">
-                        <span class="white-text">PORTFOLIO COMPLETO</span>
-                        <span class="green-text right">300</span>
-                    </div>
-                    <div class="news-item" onclick="navigate(400)">
-                        <span class="white-text">ARCADE ROOM</span>
-                        <span class="green-text right">400</span>
-                    </div>
-                    <div class="news-item" onclick="navigate(500)">
-                        <span class="white-text">LUDOPATIA (CASINO)</span>
-                        <span class="green-text right">500</span>
-                    </div>
-                    <div class="news-item" onclick="navigate(600)">
-                        <span class="white-text">CONTATTI</span>
-                        <span class="green-text right">600</span>
-                    </div>
+                    <div class="news-item" onclick="navigate(200)"><span class="white-text">CHI SONO / BIO</span><span class="green-text right">200</span></div>
+                    <div class="news-item" onclick="navigate(300)"><span class="white-text">PORTFOLIO COMPLETO</span><span class="green-text right">300</span></div>
+                    <div class="news-item" onclick="navigate(400)"><span class="white-text">ARCADE ROOM</span><span class="green-text right">400</span></div>
+                    <div class="news-item" onclick="navigate(500)"><span class="white-text">LUDOPATIA (CASINO)</span><span class="green-text right">500</span></div>
+                    <div class="news-item" onclick="navigate(600)"><span class="white-text">CONTATTI</span><span class="green-text right">600</span></div>
                 </div>
+
+                <div class="hero-faces-row">
+                    <img src="leonsinistra.jpg" alt="Profilo SX" class="pixel-face-img">
+                    <img src="leoncentro.jpg" alt="Frontale" class="pixel-face-img">
+                    <img src="leondestra.jpg" alt="Profilo DX" class="pixel-face-img">
+                </div>
+
             </section>
 
             <section id="p200" class="page">
                 <h2 class="page-title"><span class="bg-blue"> BIO </span></h2>
                 <div class="content-text">
-                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <img src="Verde.webp" alt="Logo" class="bio-logo">
-                        <div>
-                            <p><span class="yellow-text">NOME:</span> LEON KRNDIJA</p>
-                            <p><span class="yellow-text">CLASSE:</span> 2002</p>
-                            <p><span class="yellow-text">ORIGINE:</span> HR / CH</p>
-                        </div>
-                    </div>
-                    
+                    <p><span class="yellow-text">NOME:</span> LEON KRNDIJA</p>
+                    <p><span class="yellow-text">CLASSE:</span> 2002</p>
+                    <p><span class="yellow-text">ORIGINE:</span> HR / CH</p>
+                    <br>
                     <p>FORMAZIONE & SKILLS:</p>
                     <ul class="pixel-list">
                         <li>> DISEGNATORE CIVILE AFC</li>
                         <li>> SUPSI VISUAL COMM.</li>
-                        <li>> CM/VOL TRADER</li>
-                        <li>> CRYPTO INVESTOR</li>
-                        <li>> AI PROMPTER / STRATEGIST</li>
+                        <li><span class="white-text">> CM/VOL TRADER</span></li>
+                        <li><span class="white-text">> CRYPTO INVESTOR</span></li>
+                        <li><span class="white-text">> AI PROMPTER / STRATEGIST</span></li>
                     </ul>
                 </div>
             </section>
 
             <section id="p300" class="page">
                 <h2 class="page-title"><span class="bg-yellow black-text"> PORTFOLIO </span></h2>
-                
                 <div class="portfolio-block">
                     <p class="red-text">POSTER (CLICK TO VIEW) ___</p>
                     <p onclick="openImage('LINEA 9.JPG', 'LINEA 9')" class="link-item">> LINEA 9</p>
                     <p onclick="openImage('Off Humanity.jpg', 'OFF HUMANITY')" class="link-item">> OFF HUMANITY</p>
                     <p onclick="openImage('Cyberpunk 2030.jpg', 'CYBERPUNK 2030')" class="link-item">> CYBERPUNK 2030</p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">EDITORIA _______________</p>
                     <p><a href="https://drive.google.com/file/d/1uz81ZOEDegbNX25L_Kkp_dPqdYMTh4Kh/view?usp=sharing" target="_blank">> CONTRASTI (DOC)</a></p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">MOTION GRAPHICS ________</p>
                     <p><a href="https://youtu.be/SmBAhQv9jl8" target="_blank">> PONG ANIMATION</a></p>
                     <p><a href="https://youtu.be/afBQdvRv1CQ" target="_blank">> GENTE CHE SI DISPERA</a></p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">VIDEO EDITING __________</p>
                     <p><a href="https://youtu.be/yRrgI7fYfYU" target="_blank">> VIDEO 01</a></p>
-                    <p><a href="https://youtu.be/RgLRIDfBYVE" target="_blank">> VIDEO 02</a></p>
-                    <p><a href="https://youtu.be/A8hm5iUxVjY" target="_blank">> VIDEO 03</a></p>
-                    <p><a href="https://youtu.be/GJaDNvXp_Fs" target="_blank">> VIDEO 04</a></p>
+                    <p><a href="https://youtu.be/A8hm5iUxVjY" target="_blank">> VIDEO 02</a></p>
+                    <p><a href="https://youtu.be/GJaDNvXp_Fs" target="_blank">> VIDEO 03</a></p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">LOGO DESIGN ____________</p>
                     <p onclick="openImage('CP4.jpg', 'TAVOLINO CP')" class="link-item">> TAVOLINO CP</p>
                     <p onclick="openImage('CP5.jpg', 'PORTAPENNE CP')" class="link-item">> PORTAPENNE CP</p>
                     <p onclick="openImage('CP tavolo piano.jpg', 'PROGETTAZIONE CP')" class="link-item">> PROGETTAZIONE CP</p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">AI ART _________________</p>
                     <p onclick="openImage('Leon e merilin.jpg', 'LEON E MERILIN')" class="link-item">> LEON E MERILIN</p>
+                    <p><a href="https://youtu.be/PvYTwzTJ5T8" target="_blank">> VIDEO AI</a></p>
                 </div>
-
                 <div class="portfolio-block">
                     <p class="red-text">SITI WEB _______________</p>
                     <p><a href="https://beige-finch-772067.hostingersite.com/" target="_blank">> BRASILENA</a></p>
@@ -173,7 +140,6 @@
 
             <section id="p400" class="page">
                 <h2 class="page-title"><span class="bg-green black-text"> ARCADE </span></h2>
-                
                 <div id="game-menu-screen">
                     <div class="game-list">
                         <button onclick="startGame('snake')" class="game-select-btn">🐍 SNAKE <span class="right">PLAY</span></button>
@@ -182,7 +148,7 @@
                         <button onclick="startGame('tetris')" class="game-select-btn">🧱 TETRIS <span class="right">PLAY</span></button>
                     </div>
                 </div>
-
+                
                 <div id="game-area" class="hidden">
                     <div class="game-header">
                         <span id="active-game-title">GAME</span>
@@ -190,8 +156,30 @@
                         <div class="game-stats" id="space-stats" style="display:none">SCORE: <span id="space-score">0</span></div>
                         <div class="game-stats" id="tetris-stats" style="display:none">LINES: <span id="tetris-score">0</span></div>
                     </div>
-                    <canvas id="gameCanvas" width="600" height="400"></canvas>
+                    
+                    <div style="position: relative;">
+                        <canvas id="gameCanvas" width="600" height="400"></canvas>
+                        <div id="game-msg-overlay" class="hidden">
+                            <div class="game-msg-box">
+                                <h3 id="game-msg-text" class="red-text blinking-slow">GAME OVER</h3>
+                                <button onclick="closeGameMsg()" class="action-btn" style="background: white; color: black; margin-top: 10px;">CONTINUA</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <p class="controls-info blink" id="controls-hint">USO: FRECCE | SPACE: AZIONE</p>
+                    
+                    <div id="mobile-controls" class="hidden">
+                        <div class="d-pad">
+                            <button id="btn-up" class="d-btn">▲</button>
+                            <div class="d-row">
+                                <button id="btn-left" class="d-btn">◄</button>
+                                <button id="btn-right" class="d-btn">►</button>
+                            </div>
+                            <button id="btn-down" class="d-btn">▼</button>
+                        </div>
+                        <button id="btn-action" class="action-game-btn">●</button>
+                    </div>
                 </div>
             </section>
 
@@ -204,18 +192,13 @@
                             <span class="roulette-number">00</span>
                         </div>
                     </div>
-                    <div class="last-numbers">
-                        ULTIMI: <span id="history">-- -- --</span>
-                    </div>
+                    <div class="last-numbers">ULTIMI: <span id="history">-- -- --</span></div>
                     <button onclick="spinRoulette()" id="btn-spin" class="spin-btn bg-red">GIRA LA RUOTA</button>
                 </div>
-
                 <div class="casino-machine" style="margin-top: 30px;">
                     <h3>SLOT 777</h3>
                     <div class="slot-window">
-                        <span id="slot1">7</span>
-                        <span id="slot2">7</span>
-                        <span id="slot3">7</span>
+                        <span id="slot1">7</span><span id="slot2">7</span><span id="slot3">7</span>
                     </div>
                     <p id="credits-display">CREDITI: 1000 CHF</p>
                     <button onclick="spinSlot()" class="spin-btn bg-green black-text">SPIN (10 CHF)</button>
@@ -232,7 +215,6 @@
                     <p><a href="https://x.com/leonkrndija" target="_blank">> X (TWITTER)</a></p>
                 </div>
             </section>
-
         </main>
 
         <footer class="fastext-bar">
@@ -241,7 +223,6 @@
             <button onclick="triggerSelfDestruct()" class="fastext-btn yellow-btn"></button>
             <button onclick="navigate(100)" class="fastext-btn cyan-btn">HOME</button>
         </footer>
-
     </div>
 
     <script src="script.js"></script>

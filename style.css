@@ -22,7 +22,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
@@ -49,6 +49,7 @@ a:hover { background-color: var(--white); color: var(--black); }
 .red-text { color: var(--red); }
 .green-text { color: var(--green); }
 .black-text { color: var(--black); }
+.magenta-text { color: var(--magenta); }
 
 .bg-blue { background-color: var(--blue); }
 .bg-red { background-color: var(--red); }
@@ -71,27 +72,42 @@ a:hover { background-color: var(--white); color: var(--black); }
 }
 
 /* MAIN */
-#screen-content { flex-grow: 1; overflow-y: auto; scrollbar-width: none; scroll-behavior: smooth; }
+#screen-content { 
+    flex-grow: 1; 
+    overflow-y: auto; 
+    scrollbar-width: none; 
+    scroll-behavior: smooth; 
+    padding-bottom: 80px; /* Spazio per il footer mobile */
+}
 .page { display: none; padding-bottom: 40px; }
 .page.active { display: block; }
 
-/* ASCII ART */
-.ascii-art {
-    font-family: var(--font-block);
-    font-size: 12px; 
-    line-height: 14px;
-    text-align: center;
-    margin-bottom: 10px;
-    white-space: pre;
-    overflow-x: hidden;
+/* FOTO STATICHE */
+.hero-faces-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px 0;
+    border-top: 2px solid var(--blue);
 }
 
-/* BIO LOGO */
-.bio-logo {
-    width: 60px;
-    height: auto;
-    margin-right: 20px;
-    border: 2px solid var(--white);
+.pixel-face-img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    height: 150px;
+    width: auto;
+    border: 2px solid #222;
+}
+
+/* TITOLO PIXEL ART */
+.pixel-font-title {
+    font-family: var(--font-block);
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    line-height: 1;
 }
 
 /* LINKS LISTS */
@@ -112,6 +128,36 @@ canvas { display: block; width: 100%; background: #000; }
 .game-header { display: flex; justify-content: space-between; padding: 5px; background: #fff; color: #000; }
 .game-stats { font-weight: bold; }
 .controls-info { text-align: center; font-size: 0.9rem; margin-top: 5px; }
+
+/* POPUP GAME OVER (STYLE TELETEXT) */
+#game-msg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 50;
+}
+.game-msg-box {
+    background: #000;
+    border: 4px solid #fff;
+    padding: 20px;
+    text-align: center;
+    font-family: var(--font-block);
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+}
+
+/* CONTROLLI TOUCH */
+#mobile-controls {
+    display: none; /* Nascosto su desktop */
+    margin-top: 10px;
+    text-align: center;
+}
+.d-pad { display: inline-block; vertical-align: middle; margin-right: 20px; }
+.d-row { display: flex; justify-content: center; gap: 5px; margin: 5px 0; }
+.d-btn { width: 50px; height: 50px; background: #333; border: 2px solid #fff; color: #fff; font-size: 20px; touch-action: manipulation; }
+.d-btn:active { background: #555; }
+.action-game-btn { width: 60px; height: 60px; border-radius: 50%; background: #f00; border: 2px solid #fff; color: #fff; font-size: 20px; vertical-align: middle; touch-action: manipulation; }
+.action-game-btn:active { background: #900; }
 
 /* CASINO */
 .casino-machine { border: 2px solid #333; padding: 15px; margin-bottom: 20px; text-align: center; }
@@ -186,4 +232,55 @@ canvas { display: block; width: 100%; background: #000; }
     display: flex; justify-content: center; align-items: center;
     font-family: var(--font-block); font-size: 15rem;
     color: red; text-shadow: 5px 5px 0px black; z-index: 500;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px; /* Font leggermente più piccolo su mobile */
+        overflow: auto; /* Permette lo scroll su body */
+        display: block; /* Rimuove flex center per permettere scroll naturale */
+    }
+
+    .teletext-wrapper {
+        height: auto; /* Altezza automatica per scrollare */
+        min-height: 100vh;
+        padding-bottom: 80px; /* Spazio extra per la barra fissa */
+    }
+
+    .fastext-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #000;
+        z-index: 900;
+        padding: 10px;
+        gap: 5px;
+        border-top: 2px solid #fff;
+    }
+
+    .fastext-btn {
+        font-size: 1rem;
+        padding: 15px 0; /* Tasti più facili da premere */
+    }
+
+    .pixel-font-title {
+        font-size: 2.5rem; /* Titolo più piccolo */
+    }
+
+    .hero-faces-row {
+        flex-direction: column; /* Facce in colonna su mobile */
+        align-items: center;
+        gap: 15px;
+    }
+
+    .pixel-face-img {
+        height: 120px; /* Facce un po' più piccole */
+    }
+
+    /* Mostra controlli gioco su mobile quando attivi */
+    #mobile-controls {
+        display: block;
+    }
 }
