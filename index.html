@@ -157,7 +157,7 @@
                         <div class="game-stats" id="tetris-stats" style="display:none">LINES: <span id="tetris-score">0</span></div>
                     </div>
                     
-                    <div style="position: relative;">
+                    <div style="position: relative; width: 100%; display: flex; justify-content: center;">
                         <canvas id="gameCanvas" width="600" height="400"></canvas>
                         <div id="game-msg-overlay" class="hidden">
                             <div class="game-msg-box">
@@ -170,15 +170,19 @@
                     <p class="controls-info blink" id="controls-hint">USO: FRECCE | SPACE: AZIONE</p>
                     
                     <div id="mobile-controls" class="hidden">
-                        <div class="d-pad">
-                            <button id="btn-up" class="d-btn">▲</button>
-                            <div class="d-row">
-                                <button id="btn-left" class="d-btn">◄</button>
-                                <button id="btn-right" class="d-btn">►</button>
+                        <div class="controls-wrapper">
+                            <div class="d-pad">
+                                <button id="btn-up" class="d-btn">▲</button>
+                                <div class="d-row">
+                                    <button id="btn-left" class="d-btn">◄</button>
+                                    <button id="btn-right" class="d-btn">►</button>
+                                </div>
+                                <button id="btn-down" class="d-btn">▼</button>
                             </div>
-                            <button id="btn-down" class="d-btn">▼</button>
+                            <div class="action-pad">
+                                <button id="btn-action" class="action-game-btn">●</button>
+                            </div>
                         </div>
-                        <button id="btn-action" class="action-game-btn">●</button>
                     </div>
                 </div>
             </section>
