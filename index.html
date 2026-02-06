@@ -1,138 +1,249 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>La mia casa</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="bg"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEON K. | TELETEXT SYSTEM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    <div class="overlay">
-      <header class="topbar">
-        <div class="social">
-          <a class="ig" href="https://www.instagram.com/leonkrndija" target="_blank" rel="noreferrer">
-            <img src="Instagram.png" alt="Instagram" width="22" />
-          </a>
-          <a class="ig" href="https://x.com/leonkrndija" target="_blank" rel="noreferrer">
-            <img src="X.png" alt="X" width="22" />
-          </a>
-        </div>
-      </header>
+    <div class="crt-overlay"></div>
+    
+    <div id="signal-noise" class="hidden"></div>
+    
+    <div id="tv-off-effect" class="hidden"></div>
+    
+    <div id="destruct-overlay" class="hidden">5</div>
 
-      <main>
-        <h1>Krndija Leon</h1>
-        <div class="menu-wrap">
-          <button id="portfolioBtn" class="btn" type="button">Portfolio ▾</button>
-          <ul id="portfolioMenu" class="menu hidden">
-            <li><a href="#" id="editingLink" class="menu-link">Editing</a></li>
-            <li><a href="#" id="webLink" class="menu-link">Web</a></li>
-          </ul>
+    <div id="img-modal" class="hidden">
+        <div class="modal-wrapper">
+            <div class="modal-header">
+                <span id="modal-title">TITOLO OPERA</span>
+                <button onclick="closeModal()" class="close-btn-x">X</button>
+            </div>
+            <div class="modal-img-container">
+                <img id="modal-img" src="" alt="Artwork">
+            </div>
+            <div class="modal-footer">
+                <div class="social-actions" id="social-buttons-container">
+                    <button onclick="handleReaction('like')" id="btn-like" class="action-btn">
+                        [ <span class="heart">♥</span> LIKE ]
+                    </button>
+                    <button onclick="handleReaction('dislike')" id="btn-dislike" class="action-btn">
+                        [ DISLIKE ]
+                    </button>
+                </div>
+                <span class="modal-status">HD QUALITY</span>
+            </div>
         </div>
-      </main>
     </div>
 
-    <!-- Menu script -->
-    <script>
-      const btn = document.getElementById('portfolioBtn');
-      const menu = document.getElementById('portfolioMenu');
-      const editingLink = document.getElementById('editingLink');
-      const webLink = document.getElementById('webLink');
+    <div class="teletext-wrapper" id="main-wrapper">
+        
+        <header class="top-header">
+            <div class="header-left">
+                <span class="bg-blue white-text"> P100 </span>
+                <span class="yellow-text"> TELETEXT </span>
+            </div>
+            <div class="header-right">
+                <span id="clock">00:00:00</span>
+            </div>
+        </header>
 
-      btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-      document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && e.target !== btn) menu.classList.add('hidden');
-      });
+        <main id="screen-content">
 
-      editingLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open('https://www.youtube.com/watch?v=yRrgI7fYfYU&list=TLGGFUNRgwnK2zIwMjAyMjAyNg', '_blank');
-        menu.classList.add('hidden');
-      });
+            <section id="p100" class="page active">
+                <div class="hero-logo">
+<pre class="yellow-text ascii-art">
+█   ███ ███ █  █   █ █
+█   █   █ █ ██ █   ██ 
+█   ██  █ █ █ ██   █ █
+███ ███ ███ █  █   █ █
+</pre>
+                    <div class="bg-red white-text text-center"> HR / CH </div>
+                </div>
 
-      webLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.open('https://beige-finch-772067.hostingersite.com/', '_blank');
-        menu.classList.add('hidden');
-      });
-    </script>
+                <div class="info-box">
+                    <p class="green-text">PROSSIMO COMPLEANNO (12 SET):</p>
+                    <p id="countdown" class="white-text blinking-slow">CALCOLO...</p>
+                    <br>
+                    <p class="cyan-text">BITCOIN (USD) LIVE:</p>
+                    <p id="btc-price" class="white-text">LOADING...</p>
+                </div>
 
-    <!-- Three.js UMD -->
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script>
-      let scene, camera, renderer, outerSphere, innerSphere;
-      const mouse = new THREE.Vector2();
-      const raycaster = new THREE.Raycaster();
-      let isHovered = false;
+                <div class="news-list">
+                    <div class="news-item" onclick="navigate(200)">
+                        <span class="white-text">CHI SONO / BIO</span>
+                        <span class="green-text right">200</span>
+                    </div>
+                    <div class="news-item" onclick="navigate(300)">
+                        <span class="white-text">PORTFOLIO COMPLETO</span>
+                        <span class="green-text right">300</span>
+                    </div>
+                    <div class="news-item" onclick="navigate(400)">
+                        <span class="white-text">ARCADE ROOM</span>
+                        <span class="green-text right">400</span>
+                    </div>
+                    <div class="news-item" onclick="navigate(500)">
+                        <span class="white-text">LUDOPATIA (CASINO)</span>
+                        <span class="green-text right">500</span>
+                    </div>
+                    <div class="news-item" onclick="navigate(600)">
+                        <span class="white-text">CONTATTI</span>
+                        <span class="green-text right">600</span>
+                    </div>
+                </div>
+            </section>
 
-      init();
-      animate();
+            <section id="p200" class="page">
+                <h2 class="page-title"><span class="bg-blue"> BIO </span></h2>
+                <div class="content-text">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <img src="Verde.webp" alt="Logo" class="bio-logo">
+                        <div>
+                            <p><span class="yellow-text">NOME:</span> LEON KRNDIJA</p>
+                            <p><span class="yellow-text">CLASSE:</span> 2002</p>
+                            <p><span class="yellow-text">ORIGINE:</span> HR / CH</p>
+                        </div>
+                    </div>
+                    
+                    <p>FORMAZIONE & SKILLS:</p>
+                    <ul class="pixel-list">
+                        <li>> DISEGNATORE CIVILE AFC</li>
+                        <li>> SUPSI VISUAL COMM.</li>
+                        <li>> CM/VOL TRADER</li>
+                        <li>> CRYPTO INVESTOR</li>
+                        <li>> AI PROMPTER / STRATEGIST</li>
+                    </ul>
+                </div>
+            </section>
 
-      function init() {
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setClearColor(0x000000, 1);
-        document.getElementById('bg').appendChild(renderer.domElement);
+            <section id="p300" class="page">
+                <h2 class="page-title"><span class="bg-yellow black-text"> PORTFOLIO </span></h2>
+                
+                <div class="portfolio-block">
+                    <p class="red-text">POSTER (CLICK TO VIEW) ___</p>
+                    <p onclick="openImage('LINEA 9.JPG', 'LINEA 9')" class="link-item">> LINEA 9</p>
+                    <p onclick="openImage('Off Humanity.jpg', 'OFF HUMANITY')" class="link-item">> OFF HUMANITY</p>
+                    <p onclick="openImage('Cyberpunk 2030.jpg', 'CYBERPUNK 2030')" class="link-item">> CYBERPUNK 2030</p>
+                </div>
 
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.set(0, 0, 5);
+                <div class="portfolio-block">
+                    <p class="red-text">EDITORIA _______________</p>
+                    <p><a href="https://drive.google.com/file/d/1uz81ZOEDegbNX25L_Kkp_dPqdYMTh4Kh/view?usp=sharing" target="_blank">> CONTRASTI (DOC)</a></p>
+                </div>
 
-        const ambient = new THREE.AmbientLight(0xffffff, 0.7);
-        const dir = new THREE.DirectionalLight(0xffffff, 1);
-        dir.position.set(3, 3, 3);
-        scene.add(ambient, dir);
+                <div class="portfolio-block">
+                    <p class="red-text">MOTION GRAPHICS ________</p>
+                    <p><a href="https://youtu.be/SmBAhQv9jl8" target="_blank">> PONG ANIMATION</a></p>
+                    <p><a href="https://youtu.be/afBQdvRv1CQ" target="_blank">> GENTE CHE SI DISPERA</a></p>
+                </div>
 
-        const outerGeo = new THREE.SphereGeometry(1, 32, 32);
-        const outerMat = new THREE.MeshStandardMaterial({
-          color: 0xcccccc,
-          metalness: 0.8,
-          roughness: 0.2,
-          wireframe: true,
-          emissive: new THREE.Color(0x333333)
-        });
-        outerSphere = new THREE.Mesh(outerGeo, outerMat);
-        scene.add(outerSphere);
+                <div class="portfolio-block">
+                    <p class="red-text">VIDEO EDITING __________</p>
+                    <p><a href="https://youtu.be/yRrgI7fYfYU" target="_blank">> VIDEO 01</a></p>
+                    <p><a href="https://youtu.be/RgLRIDfBYVE" target="_blank">> VIDEO 02</a></p>
+                    <p><a href="https://youtu.be/A8hm5iUxVjY" target="_blank">> VIDEO 03</a></p>
+                    <p><a href="https://youtu.be/GJaDNvXp_Fs" target="_blank">> VIDEO 04</a></p>
+                </div>
 
-        const innerGeo = new THREE.SphereGeometry(0.8, 16, 16);
-        const innerMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        innerSphere = new THREE.Mesh(innerGeo, innerMat);
-        scene.add(innerSphere);
+                <div class="portfolio-block">
+                    <p class="red-text">LOGO DESIGN ____________</p>
+                    <p onclick="openImage('CP4.jpg', 'TAVOLINO CP')" class="link-item">> TAVOLINO CP</p>
+                    <p onclick="openImage('CP5.jpg', 'PORTAPENNE CP')" class="link-item">> PORTAPENNE CP</p>
+                    <p onclick="openImage('CP tavolo piano.jpg', 'PROGETTAZIONE CP')" class="link-item">> PROGETTAZIONE CP</p>
+                </div>
 
-        window.addEventListener('resize', onResize);
-        window.addEventListener('mousemove', onMouseMove);
-      }
+                <div class="portfolio-block">
+                    <p class="red-text">AI ART _________________</p>
+                    <p onclick="openImage('Leon e merilin.jpg', 'LEON E MERILIN')" class="link-item">> LEON E MERILIN</p>
+                </div>
 
-      function onResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }
+                <div class="portfolio-block">
+                    <p class="red-text">SITI WEB _______________</p>
+                    <p><a href="https://beige-finch-772067.hostingersite.com/" target="_blank">> BRASILENA</a></p>
+                    <p><a href="https://cartomanziaticinese.ch/" target="_blank">> CARTOMANZIA TICINESE</a></p>
+                    <p><a href="https://leonkrndija.ch/" target="_blank">> LEONKRNDIJA.CH</a></p>
+                </div>
+            </section>
 
-      function onMouseMove(e) {
-        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      }
+            <section id="p400" class="page">
+                <h2 class="page-title"><span class="bg-green black-text"> ARCADE </span></h2>
+                
+                <div id="game-menu-screen">
+                    <div class="game-list">
+                        <button onclick="startGame('snake')" class="game-select-btn">🐍 SNAKE <span class="right">PLAY</span></button>
+                        <button onclick="startGame('pong')" class="game-select-btn">🏓 PONG <span class="right">PLAY</span></button>
+                        <button onclick="startGame('space')" class="game-select-btn">👾 SPACE INVADERS <span class="right">PLAY</span></button>
+                        <button onclick="startGame('tetris')" class="game-select-btn">🧱 TETRIS <span class="right">PLAY</span></button>
+                    </div>
+                </div>
 
-      function animate() {
-        requestAnimationFrame(animate);
+                <div id="game-area" class="hidden">
+                    <div class="game-header">
+                        <span id="active-game-title">GAME</span>
+                        <div class="game-stats" id="pong-stats" style="display:none">SPEED: <span id="speed-display">1</span></div>
+                        <div class="game-stats" id="space-stats" style="display:none">SCORE: <span id="space-score">0</span></div>
+                        <div class="game-stats" id="tetris-stats" style="display:none">LINES: <span id="tetris-score">0</span></div>
+                    </div>
+                    <canvas id="gameCanvas" width="600" height="400"></canvas>
+                    <p class="controls-info blink" id="controls-hint">USO: FRECCE | SPACE: AZIONE</p>
+                </div>
+            </section>
 
-        const t = performance.now() * 0.001;
-        outerSphere.rotation.y = t * 0.3;
-        outerSphere.rotation.z = Math.sin(t * 0.4) * 0.05;
-        innerSphere.rotation.y = t * 0.2;
+            <section id="p500" class="page">
+                <h2 class="page-title"><span class="bg-magenta white-text"> CASINO </span></h2>
+                <div class="casino-machine">
+                    <h3>ROULETTE PIXEL</h3>
+                    <div class="roulette-display">
+                        <div id="roulette-wheel" class="wheel-anim">
+                            <span class="roulette-number">00</span>
+                        </div>
+                    </div>
+                    <div class="last-numbers">
+                        ULTIMI: <span id="history">-- -- --</span>
+                    </div>
+                    <button onclick="spinRoulette()" id="btn-spin" class="spin-btn bg-red">GIRA LA RUOTA</button>
+                </div>
 
-        raycaster.setFromCamera(mouse, camera);
-        const hit = raycaster.intersectObject(outerSphere).length > 0;
-        if (hit !== isHovered) {
-          isHovered = hit;
-          outerSphere.material.color.set(isHovered ? 0xffffff : 0xcccccc);
-        }
+                <div class="casino-machine" style="margin-top: 30px;">
+                    <h3>SLOT 777</h3>
+                    <div class="slot-window">
+                        <span id="slot1">7</span>
+                        <span id="slot2">7</span>
+                        <span id="slot3">7</span>
+                    </div>
+                    <p id="credits-display">CREDITI: 1000 CHF</p>
+                    <button onclick="spinSlot()" class="spin-btn bg-green black-text">SPIN (10 CHF)</button>
+                </div>
+            </section>
 
-        renderer.render(scene, camera);
-      }
-    </script>
-  </body>
+            <section id="p600" class="page">
+                <h2 class="page-title"><span class="bg-red white-text"> CONTATTI </span></h2>
+                <div class="contact-card">
+                    <p>EMAIL: info@leonkrndija.ch</p>
+                    <br>
+                    <p><a href="https://www.instagram.com/leonkrndija" target="_blank">> INSTAGRAM</a></p>
+                    <p><a href="https://www.linkedin.com/in/leon-krndija-3359a3367/" target="_blank">> LINKEDIN</a></p>
+                    <p><a href="https://x.com/leonkrndija" target="_blank">> X (TWITTER)</a></p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="fastext-bar">
+            <button onclick="goBack()" class="fastext-btn red-btn">BACK</button>
+            <button onclick="window.open('https://leonkrndija.ch/','_blank')" class="fastext-btn green-btn">SITE</button>
+            <button onclick="triggerSelfDestruct()" class="fastext-btn yellow-btn"></button>
+            <button onclick="navigate(100)" class="fastext-btn cyan-btn">HOME</button>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
